@@ -4,7 +4,7 @@ Rate Limiter
 A fixed-window rate limiter allows a client to make a limited number of
 requests within a fixed period of time.
 
-<h1>A fixed window is a rate-limiting method where you divide time into fixed chunks and allow only a certain number of requests in each chunk.
+<h3>A fixed window is a rate-limiting method where you divide time into fixed chunks and allow only a certain number of requests in each chunk.
 
 **Example:** 5 requests every 10 seconds.
 
