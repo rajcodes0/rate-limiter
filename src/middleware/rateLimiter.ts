@@ -1,8 +1,6 @@
 import {Request,Response,NextFunction} from "express";
 
 
-
-
 const LIMIT = 5;
 const WINDOW = 10000; // 10 seconds
 const requests = new Map<string, ClientData>();
@@ -51,7 +49,17 @@ export function rateLimiter(
   res: Response,
   next: NextFunction
 ) {
-  console.log("Rate limiter received a request");
+  const client = req.ip;
+
+  const allowed = recordRequest(client);
+
+  if (!allowed) {
+    res.status(429).json({
+      message: "Too many requests"
+    });
+
+    return;
+  }
 
   next();
 }
