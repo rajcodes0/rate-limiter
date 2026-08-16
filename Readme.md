@@ -109,5 +109,5 @@ here it mean approximately like how many request the client can still make in th
 ### Visualize the approach made with chatgpt
 
 <p align="center">
-  <img src="./images/fixedwindowvisual.png" alt="Fixed Window Rate Limiter" width="700">
+  <img src="./assests/fixedwindowvisual.png" alt="Fixed Window Rate Limiter" width="700">
 </p>
