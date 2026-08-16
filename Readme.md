@@ -83,12 +83,8 @@ Limit        = 5 requests
 │                         │                         │
 └────── Window 1 ─────────┴────── Window 2 ─────────┘
 
+### Key Notes
 
-<br>
+1. **What should the Map store for each client?**
 
-<h3>key notes
-
-1. What should the Map store for each client?
-so basically here Map stores the count how many times your ip address hit the api , like for this IP ,what is the current rate-limit information.
-
-2.
+So basically, the `Map` stores the count of how many times an IP address has hit the API. It keeps the current rate-limit information for each client.
