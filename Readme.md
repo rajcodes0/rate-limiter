@@ -82,6 +82,7 @@ Limit        = 5 requests
 │   Request 6 ❌          │                         │
 │                         │                         │
 └────── Window 1 ─────────┴────── Window 2 ─────────┘
+```
 
 ### Key Notes
 
