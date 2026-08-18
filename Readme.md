@@ -113,7 +113,8 @@ here it mean approximately like how many request the client can still make in th
 
 <h3>Switch to v2 from here
 
-6. **f we create a rate limiter with limit = 5 and window = 10 seconds, where should those two values live so that the limiter can use them for every incoming IP?**
+6. **if we create a rate limiter with limit = 5 and window = 10 seconds, where should those two values live so that the limiter can use them for every incoming IP?**
+
 so the idea is configuration get passed into the rate limiter when you create it btw.
 -important difference limit and window are like rules for the limiter.
 -And IP,count,windowstart are the data about individual clients.
