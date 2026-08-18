@@ -87,7 +87,6 @@ Limit        = 5 requests
 ### Key Notes
 
 1. **What should the Map store for each client?**
-
 So basically, the `Map` stores the count of how many times an IP address has hit the API. It keeps the current rate-limit information for each client.
 
 2. **Why do we need windowStart?**
@@ -111,3 +110,11 @@ here it mean approximately like how many request the client can still make in th
 <p align="center">
   <img src="./assests/fixedwindowvisual.png" alt="Fixed Window Rate Limiter" width="700">
 </p>
+
+<h3>Switch to v2 from here
+
+6. **f we create a rate limiter with limit = 5 and window = 10 seconds, where should those two values live so that the limiter can use them for every incoming IP?**
+so the idea is configuration get passed into the rate limiter when you create it btw.
+-important difference limit and window are like rules for the limiter.
+-And IP,count,windowstart are the data about individual clients.
+so sonfigurataion lives inside the rate limiter instance,seperate from the Map that stores each client's state.
