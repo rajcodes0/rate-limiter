@@ -1,19 +1,22 @@
- export type RateLimitConfig = {
-    limit: number;
-    window: number;
-   
-}
+import type { Request } from "express";
 
-export type ClientData = {
-     count: number;
-    windowStart: number;
-}
+export type RateLimitAlgorithm = "fixed-window" | "sliding-window-log" | "sliding-window-counter" | "token-bucket" | "leaky-bucket";
+
+export type RateLimitConfig = {
+  algorithm: RateLimitAlgorithm;
+  limit: number;
+  windowMs?: number;
+  capacity?: number;
+  ratePerSecond?: number;
+  keyGenerator?: (request: Request) => string;
+};
 
 export type RateLimitResult = {
   allowed: boolean;
+  limit: number;
   remaining: number;
-  retryAfter: number;
+  resetAt: number;
+  retryAfterMs: number;
 };
-
 
 

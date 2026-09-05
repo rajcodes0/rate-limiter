@@ -1,0 +1,33 @@
+services:
+  api:
+    build: .
+    environment:
+      RATE_LIMIT_ALGORITHM: token-bucket
+      RATE_LIMIT_LIMIT: 100
+      RATE_LIMIT_WINDOW_MS: 60000
+      # Redis is provisioned for the next shared-store step. The current
+      # algorithms are intentionally process-local and need atomic Redis scripts
+      # before they can safely be shared by multiple API replicas.
+      REDIS_URL: redis://redis:6379
+      DASHBOARD_ORIGIN: http://localhost:8080
+    depends_on:
+      redis:
+        condition: service_healthy
+  dashboard:
+    build: ./frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - api
+  redis:
+    image: redis:7-alpine
+    command: redis-server --appendonly yes
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+volumes:
+  redis-data:
